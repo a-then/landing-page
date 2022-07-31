@@ -1,0 +1,109 @@
+/**
+ * 
+ * Manipulating the DOM exercise.
+ * Exercise programmatically builds navigation,
+ * scrolls to anchors from navigation,
+ * and highlights section in viewport upon scrolling.
+ * 
+ * Dependencies: None
+ * 
+ * JS Version: ES2015/ES6
+ * 
+ * JS Standard: ESlint
+ * 
+*/
+
+/**
+ * Comments should be present at the beginning of each procedure and class.
+ * Great to have comments before crucial code sections within the procedure.
+*/
+
+/**
+ * Define Global Variables
+*/
+let sections;
+/**
+ * End Global Variables
+ */
+
+/* Start Helper Functions
+* 
+*/
+const smoothScroll = (liNav, section) => {
+    liNav.addEventListener("click", () => {
+        section.scrollIntoView({ behavior: "smooth" });
+    });
+}
+
+/**
+ * End Helper Functions
+ * Begin Main Functions
+ * 
+*/
+const buildNav = () => {
+    sections = document.getElementsByTagName("section");
+
+    for (const section of sections) {
+        const aNav = document.createElement("a");
+        aNav.textContent = section.getAttribute("data-nav");
+        aNav.classList.add("menu__link");
+        // aNav.setAttribute("href", `#${section.getAttribute("id")}`);
+
+        const liNav = document.createElement("li");
+        liNav.appendChild(aNav);
+
+
+        // Scroll to section on link click
+        smoothScroll(liNav, section);
+
+        const ulNav = document.getElementById("navbar__list")
+        ulNav.appendChild(liNav);
+    }
+}
+
+// Build menu 
+buildNav();
+
+// Add class 'active' to section when near top of viewport
+function classActive() {
+    for (const section of sections) {
+        let top = section.getBoundingClientRect().top;
+    
+        if (top >= 0 && top <= 500) {
+            const activeSection = section.classList.add("activeClass");
+          
+            return section;
+        }
+        else {
+            section.classList.remove("activeClass");
+        }
+    }
+}
+
+// TODO: The active section in the Navbar should be highlighted.
+
+/**
+ * End Main Functions
+ * Begin Events
+//  *
+// */
+
+
+// Set sections as active
+document.addEventListener("scroll", () => {
+    classActive()
+});
+
+/* control back to top button */
+topButton = document.getElementById("toTop");
+// show only when user scrolls below fold of the page.
+window.onscroll = function scrollFunction() {
+    if (document.documentElement.scrollTop > 800) {
+        topButton.style.display = "block";
+    } else {
+        topButton.style.display = "none";
+    }
+}
+//scroll to top
+const topFunction = () =>
+    document.documentElement.scrollTo({top: 0, behavior: 'smooth'});
