@@ -14,11 +14,6 @@
 */
 
 /**
- * Comments should be present at the beginning of each procedure and class.
- * Great to have comments before crucial code sections within the procedure.
-*/
-
-/**
  * Define Global Variables
 */
 let sections;
@@ -26,8 +21,7 @@ let sections;
  * End Global Variables
  */
 
-/* Start Helper Functions
-* 
+/* Helper Functions
 */
 const smoothScroll = (liNav, section) => {
     liNav.addEventListener("click", () => {
@@ -36,9 +30,7 @@ const smoothScroll = (liNav, section) => {
 }
 
 /**
- * End Helper Functions
- * Begin Main Functions
- * 
+ Main Functions
 */
 const buildNav = () => {
     sections = document.getElementsByTagName("section");
@@ -47,7 +39,6 @@ const buildNav = () => {
         const aNav = document.createElement("a");
         aNav.textContent = section.getAttribute("data-nav");
         aNav.classList.add("menu__link");
-        // aNav.setAttribute("href", `#${section.getAttribute("id")}`);
 
         const liNav = document.createElement("li");
         liNav.appendChild(aNav);
@@ -65,37 +56,38 @@ const buildNav = () => {
 buildNav();
 
 // Add class 'active' to section when near top of viewport
-function classActive() {
+const classActive = () => {
     for (const section of sections) {
         let top = section.getBoundingClientRect().top;
-    
-        if (top >= 0 && top <= 500) {
+
+        if (top >= 0 && top <= 300) {
             const activeSection = section.classList.add("activeClass");
-          
+            // highlight menu when section is active
+            let menuLinks = document.querySelectorAll("a");
+            for (const link of menuLinks) {
+                if (link.textContent === section.getAttribute("data-nav")) {
+                    link.classList.add("activeClass");
+                } else
+                    link.classList.remove("activeClass");
+            }
+            //
             return section;
         }
         else {
             section.classList.remove("activeClass");
         }
     }
-}
+};
 
-// TODO: The active section in the Navbar should be highlighted.
-
-/**
- * End Main Functions
- * Begin Events
-//  *
-// */
-
+/* Event Listeners */
 
 // Set sections as active
 document.addEventListener("scroll", () => {
     classActive()
 });
 
-/* control back to top button */
-topButton = document.getElementById("toTop");
+/* Back to top button */
+const topButton = document.getElementById("toTop");
 // show only when user scrolls below fold of the page.
 window.onscroll = function scrollFunction() {
     if (document.documentElement.scrollTop > 800) {
@@ -106,4 +98,4 @@ window.onscroll = function scrollFunction() {
 }
 //scroll to top
 const topFunction = () =>
-    document.documentElement.scrollTo({top: 0, behavior: 'smooth'});
+    document.documentElement.scrollTo({ top: 0, behavior: 'smooth' });
