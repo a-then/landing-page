@@ -1,13 +1,12 @@
-# Landing Page Project
+# Interactive Landing Page
 
-## Table of Contents
+This is Project 2 of Udacity's Web Programming Nanodegree. A starter code was provided by Udacity with some HTML and CSS styling to display a static version of the Landing Page project. I added interactive features using JavaScript primarily.
 
-* [Instructions](#instructions)
+To see it, open `index.html` with your favorite browser.
 
-## Instructions
-
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+## Features
+- Navigation is built dynamically
+- Automatically setting active class to sections
+- highlights menu when the section is active
+- Smooth scrolling
+- Back to top button
