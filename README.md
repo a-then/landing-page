@@ -1,6 +1,6 @@
 # Interactive Landing Page
 
-This is Project 2 of Udacity's Web Programming Nanodegree. A starter code was provided by Udacity with some HTML and CSS styling to display a static version of the Landing Page project. I added interactive features using JavaScript primarily.
+A starter code was provided by Udacity with some HTML and CSS styling to display a static version of the Landing Page project. I added interactive features using JavaScript primarily.
 
 To see it, open `index.html` with your favorite browser.
 
